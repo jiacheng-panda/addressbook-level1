@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.List;
 
 /*
  * NOTE : =============================================================
@@ -389,7 +390,7 @@ public class AddressBook {
             return executeListAllPersonsInAddressBook();
         case COMMAND_DELETE_WORD:
             return executeDeletePerson(commandArgs);
-        case COMMAND_DELETE_WORD:
+        case COMMAND_DELETEMORE_WORD:
             return executeDeleteMore(commandArgs);
         case COMMAND_CLEAR_WORD:
             return executeClearAddressBook();
@@ -524,6 +525,22 @@ public class AddressBook {
         final String[] targetInModel = getPersonByLastVisibleIndex(targetVisibleIndex);
         return deletePersonFromAddressBook(targetInModel) ? getMessageForSuccessfulDelete(targetInModel) // success
                                                           : MESSAGE_PERSON_NOT_IN_ADDRESSBOOK; // not found
+    }
+
+
+    /**
+     * Deletes multiple persons identified using last displayed index.
+     *
+     * @param commandArgs full command args string from the user
+     * @return feedback display message for the operation result
+     */
+    private static void executeDeleteMore(String commandArgs) {
+        String[] indexToDelete = commandArgs.split("\\s+");
+
+        List<String> listOfIndexToDelete = Arrays.asList(indexToDelete);
+        for (String index: listOfIndexToDelete){
+            executeDeletePerson(index);
+        }
     }
 
     /**
