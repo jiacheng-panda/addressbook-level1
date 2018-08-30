@@ -112,7 +112,7 @@ public class AddressBook {
     private static final String COMMAND_FIND_EXAMPLE = COMMAND_FIND_WORD + " alice bob charlie";
 
 
-    private static final String COMMAND_FINDPHONE_WORD = "find_phoneNumber";
+    private static final String COMMAND_FINDPHONE_WORD = "findPhoneNumber";
     private static final String COMMAND_FINDPHONE_DESC = "Finds the person with that phone number and displays them as a list with index numbers.";
     private static final String COMMAND_FINDPHONE_PARAMETERS = PERSON_DATA_PREFIX_PHONE + "%2$s";
     private static final String COMMAND_FINDPHONE_EXAMPLE = COMMAND_FINDPHONE_WORD + "p/98765432";
@@ -127,6 +127,11 @@ public class AddressBook {
                                                     + "the last find/list call.";
     private static final String COMMAND_DELETE_PARAMETER = "INDEX";
     private static final String COMMAND_DELETE_EXAMPLE = COMMAND_DELETE_WORD + " 1";
+
+    private static final String COMMAND_DELETEMORE_WORD = "deleteMore";
+    private static final String COMMAND_DELETEMORE_DESC = "deletes multiple persons by the index numbers provided";
+    private static final String COMMAND_DELETEMORE_PARAMETER = "INDEX";
+    private static final String COMMAND_DELETEMORE_EXAMPLE = COMMAND_DELETEMORE_WORD + "1" + "3";
 
     private static final String COMMAND_CLEAR_WORD = "clear";
     private static final String COMMAND_CLEAR_DESC = "Clears address book permanently.";
@@ -384,6 +389,8 @@ public class AddressBook {
             return executeListAllPersonsInAddressBook();
         case COMMAND_DELETE_WORD:
             return executeDeletePerson(commandArgs);
+        case COMMAND_DELETE_WORD:
+            return executeDeleteMore(commandArgs);
         case COMMAND_CLEAR_WORD:
             return executeClearAddressBook();
         case COMMAND_HELP_WORD:
