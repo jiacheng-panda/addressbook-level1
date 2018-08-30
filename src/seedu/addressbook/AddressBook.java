@@ -131,8 +131,8 @@ public class AddressBook {
 
     private static final String COMMAND_DELETEMORE_WORD = "deleteMore";
     private static final String COMMAND_DELETEMORE_DESC = "deletes multiple persons by the index numbers provided";
-    private static final String COMMAND_DELETEMORE_PARAMETER = "INDEX";
-    private static final String COMMAND_DELETEMORE_EXAMPLE = COMMAND_DELETEMORE_WORD + "1" + "3";
+    private static final String COMMAND_DELETEMORE_PARAMETER = "INDEX separated by whitespace";
+    private static final String COMMAND_DELETEMORE_EXAMPLE = COMMAND_DELETEMORE_WORD + " 1 3";
 
     private static final String COMMAND_CLEAR_WORD = "clear";
     private static final String COMMAND_CLEAR_DESC = "Clears address book permanently.";
@@ -391,7 +391,7 @@ public class AddressBook {
         case COMMAND_DELETE_WORD:
             return executeDeletePerson(commandArgs);
         case COMMAND_DELETEMORE_WORD:
-            return executeDeleteMore(commandArgs);
+            { executeDeleteMore(commandArgs); return "delete done.";}
         case COMMAND_CLEAR_WORD:
             return executeClearAddressBook();
         case COMMAND_HELP_WORD:
@@ -538,7 +538,7 @@ public class AddressBook {
         String[] indexToDelete = commandArgs.split("\\s+");
 
         List<String> listOfIndexToDelete = Arrays.asList(indexToDelete);
-        for (String index: listOfIndexToDelete){
+        for (String index: listOfIndexToDelete) {
             executeDeletePerson(index);
         }
     }
@@ -1117,6 +1117,7 @@ public class AddressBook {
                 + getUsageInfoForFindCommand() + LS
                 + getUsageInfoForViewCommand() + LS
                 + getUsageInfoForDeleteCommand() + LS
+                + getUsageInfoForDeleteMoreCommand() + LS
                 + getUsageInfoForClearCommand() + LS
                 + getUsageInfoForExitCommand() + LS
                 + getUsageInfoForHelpCommand();
@@ -1142,6 +1143,14 @@ public class AddressBook {
                 + String.format(MESSAGE_COMMAND_HELP_PARAMETERS, COMMAND_DELETE_PARAMETER) + LS
                 + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_DELETE_EXAMPLE) + LS;
     }
+
+    /** Returns the string for showing 'deleteMore' command usage instruction */
+    private static String getUsageInfoForDeleteMoreCommand() {
+        return String.format(MESSAGE_COMMAND_HELP, COMMAND_DELETEMORE_WORD, COMMAND_DELETEMORE_DESC) + LS
+                + String.format(MESSAGE_COMMAND_HELP_PARAMETERS, COMMAND_DELETEMORE_PARAMETER) + LS
+                + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_DELETEMORE_EXAMPLE) + LS;
+    }
+
 
     /** Returns string for showing 'clear' command usage instruction */
     private static String getUsageInfoForClearCommand() {

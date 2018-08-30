@@ -92,6 +92,20 @@
   list
 
 ##########################################################
+ # test delete more persons command
+##########################################################
+
+   # add three persons for testing
+   add Aaron p/1234 e/1234@gmail.com
+   add Beatrix p/2345 e/2345@gmail.com
+   add Charles p/3456 e/3456@gmail.com
+   list
+
+   deleteMore 2 4 5
+   list
+
+
+##########################################################
 # test clear command
 ##########################################################
 
