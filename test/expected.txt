@@ -65,11 +65,11 @@
 || delete: Deletes a person identified by the index number used in the last find/list call.
 || 	Parameters: INDEX
 || 	Example: delete 1
-||
+|| 
 || deleteMore: deletes multiple persons by the index numbers provided
 || 	Parameters: INDEX separated by whitespace
 || 	Example: deleteMore 1 3
-||
+|| 
 || clear: Clears address book permanently.
 || 	Example: clear
 || 
@@ -287,7 +287,7 @@
 || 	3. Aaron  Phone Number: 1234  Email: 1234@gmail.com
 || 	4. Beatrix  Phone Number: 2345  Email: 2345@gmail.com
 || 	5. Charles  Phone Number: 3456  Email: 3456@gmail.com
-||
+|| 
 || 5 persons found!
 || ===================================================
 || Enter command: || [Command entered:   deleteMore 2 4 5]
@@ -296,7 +296,7 @@
 || Enter command: || [Command entered:   list]
 || 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
 || 	2. Aaron  Phone Number: 1234  Email: 1234@gmail.com
-||
+|| 
 || 2 persons found!
 || ===================================================
 || Enter command: || [Command entered:  clear]
