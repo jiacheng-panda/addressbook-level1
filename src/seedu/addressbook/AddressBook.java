@@ -91,6 +91,7 @@ public class AddressBook {
     private static final String MESSAGE_STORAGE_FILE_CREATED = "Created new empty storage file: %1$s";
     private static final String MESSAGE_WELCOME = "Welcome to your Address Book!";
     private static final String MESSAGE_USING_DEFAULT_FILE = "Using default storage file : " + DEFAULT_STORAGE_FILEPATH;
+    private static final String MESSAGE_TOTAL_IN_ADDRESSBOOK = "There is/are %1$s person(s) in the address book";
 
     // These are the prefix strings to define the data type of a command parameter
     private static final String PERSON_DATA_PREFIX_PHONE = "p/";
@@ -115,7 +116,7 @@ public class AddressBook {
 
     private static final String COMMAND_FINDPHONE_WORD = "findPhoneNumber";
     private static final String COMMAND_FINDPHONE_DESC = "Finds the person with that phone number and displays them as a list with index numbers.";
-    private static final String COMMAND_FINDPHONE_PARAMETERS = PERSON_DATA_PREFIX_PHONE + "%2$s";
+    private static final String COMMAND_FINDPHONE_PARAMETERS = PERSON_DATA_PREFIX_PHONE + "%1$s";
     private static final String COMMAND_FINDPHONE_EXAMPLE = COMMAND_FINDPHONE_WORD + "p/98765432";
 
 
@@ -129,10 +130,9 @@ public class AddressBook {
     private static final String COMMAND_DELETE_PARAMETER = "INDEX";
     private static final String COMMAND_DELETE_EXAMPLE = COMMAND_DELETE_WORD + " 1";
 
-    private static final String COMMAND_DELETEMORE_WORD = "deleteMore";
-    private static final String COMMAND_DELETEMORE_DESC = "deletes multiple persons by the index numbers provided";
-    private static final String COMMAND_DELETEMORE_PARAMETER = "INDEX separated by whitespace";
-    private static final String COMMAND_DELETEMORE_EXAMPLE = COMMAND_DELETEMORE_WORD + " 1 3";
+    private static final String COMMAND_TOTAL_WORD = "total";
+    private static final String COMMAND_TOTAL_DESC = "Display total number of people in the address book.";
+    private static final String COMMAND_TOTAL_EXAMPLE = COMMAND_TOTAL_WORD;
 
     private static final String COMMAND_CLEAR_WORD = "clear";
     private static final String COMMAND_CLEAR_DESC = "Clears address book permanently.";
@@ -390,8 +390,8 @@ public class AddressBook {
             return executeListAllPersonsInAddressBook();
         case COMMAND_DELETE_WORD:
             return executeDeletePerson(commandArgs);
-        case COMMAND_DELETEMORE_WORD:
-            { executeDeleteMore(commandArgs); return "delete done.";}
+        case COMMAND_TOTAL_WORD:
+            return executeTotal();
         case COMMAND_CLEAR_WORD:
             return executeClearAddressBook();
         case COMMAND_HELP_WORD:
@@ -527,22 +527,6 @@ public class AddressBook {
                                                           : MESSAGE_PERSON_NOT_IN_ADDRESSBOOK; // not found
     }
 
-
-    /**
-     * Deletes multiple persons identified using last displayed index.
-     *
-     * @param commandArgs full command args string from the user
-     * @return feedback display message for the operation result
-     */
-    private static void executeDeleteMore(String commandArgs) {
-        String[] indexToDelete = commandArgs.split("\\s+");
-
-        List<String> listOfIndexToDelete = Arrays.asList(indexToDelete);
-        for (String index: listOfIndexToDelete) {
-            executeDeletePerson(index);
-        }
-    }
-
     /**
      * Checks validity of delete person argument string's format.
      *
@@ -587,6 +571,15 @@ public class AddressBook {
      */
     private static String getMessageForSuccessfulDelete(String[] deletedPerson) {
         return String.format(MESSAGE_DELETE_PERSON_SUCCESS, getMessageForFormattedPersonData(deletedPerson));
+    }
+
+    /**
+     * Dislay number of persons in the address book.
+     *
+     * @return feedback display message for the operation result
+     */
+    private static String executeTotal() {
+        return String.format(MESSAGE_TOTAL_IN_ADDRESSBOOK, latestPersonListingView.size());
     }
 
     /**
@@ -1117,7 +1110,7 @@ public class AddressBook {
                 + getUsageInfoForFindCommand() + LS
                 + getUsageInfoForViewCommand() + LS
                 + getUsageInfoForDeleteCommand() + LS
-                + getUsageInfoForDeleteMoreCommand() + LS
+                + getUsageInfoForTotalCommand() + LS
                 + getUsageInfoForClearCommand() + LS
                 + getUsageInfoForExitCommand() + LS
                 + getUsageInfoForHelpCommand();
@@ -1145,10 +1138,9 @@ public class AddressBook {
     }
 
     /** Returns the string for showing 'deleteMore' command usage instruction */
-    private static String getUsageInfoForDeleteMoreCommand() {
-        return String.format(MESSAGE_COMMAND_HELP, COMMAND_DELETEMORE_WORD, COMMAND_DELETEMORE_DESC) + LS
-                + String.format(MESSAGE_COMMAND_HELP_PARAMETERS, COMMAND_DELETEMORE_PARAMETER) + LS
-                + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_DELETEMORE_EXAMPLE) + LS;
+    private static String getUsageInfoForTotalCommand() {
+        return String.format(MESSAGE_COMMAND_HELP, COMMAND_TOTAL_WORD, COMMAND_TOTAL_DESC) + LS
+                + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_TOTAL_EXAMPLE) + LS;
     }
 
 

@@ -92,18 +92,18 @@
   list
 
 ##########################################################
- # test delete more persons command
+ # test total command
 ##########################################################
 
-   # add three persons for testing
-   add Aaron p/1234 e/1234@gmail.com
-   add Beatrix p/2345 e/2345@gmail.com
-   add Charles p/3456 e/3456@gmail.com
-   list
+  # list all persons in address book and compare
+  list
+  total
 
-   deleteMore 2 4 5
-   list
-
+  # add 2 persons for testing and test again
+  add Aaron p/1234 e/1234@gmail.com
+  add Beatrix p/2345 e/2345@gmail.com
+  list
+  total
 
 ##########################################################
 # test clear command

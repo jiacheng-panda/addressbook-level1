@@ -66,9 +66,8 @@
 || 	Parameters: INDEX
 || 	Example: delete 1
 || 
-|| deleteMore: deletes multiple persons by the index numbers provided
-|| 	Parameters: INDEX separated by whitespace
-|| 	Example: deleteMore 1 3
+|| total: Display total number of people in the address book.
+|| 	Example: total
 || 
 || clear: Clears address book permanently.
 || 	Example: clear
@@ -272,32 +271,31 @@
 || 
 || 2 persons found!
 || ===================================================
-|| Enter command: || [Command entered:   add Aaron p/1234 e/1234@gmail.com]
+|| Enter command: || [Command entered:  list]
+|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
+|| 	2. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
+|| 
+|| 2 persons found!
+|| ===================================================
+|| Enter command: || [Command entered:  total]
+|| There is/are 2 person(s) in the address book
+|| ===================================================
+|| Enter command: || [Command entered:  add Aaron p/1234 e/1234@gmail.com]
 || New person added: Aaron, Phone: 1234, Email: 1234@gmail.com
 || ===================================================
-|| Enter command: || [Command entered:   add Beatrix p/2345 e/2345@gmail.com]
+|| Enter command: || [Command entered:  add Beatrix p/2345 e/2345@gmail.com]
 || New person added: Beatrix, Phone: 2345, Email: 2345@gmail.com
 || ===================================================
-|| Enter command: || [Command entered:   add Charles p/3456 e/3456@gmail.com]
-|| New person added: Charles, Phone: 3456, Email: 3456@gmail.com
-|| ===================================================
-|| Enter command: || [Command entered:   list]
+|| Enter command: || [Command entered:  list]
 || 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
 || 	2. Dickson Ee  Phone Number: 444444  Email: dickson@nus.edu.sg
 || 	3. Aaron  Phone Number: 1234  Email: 1234@gmail.com
 || 	4. Beatrix  Phone Number: 2345  Email: 2345@gmail.com
-|| 	5. Charles  Phone Number: 3456  Email: 3456@gmail.com
 || 
-|| 5 persons found!
+|| 4 persons found!
 || ===================================================
-|| Enter command: || [Command entered:   deleteMore 2 4 5]
-|| delete done.
-|| ===================================================
-|| Enter command: || [Command entered:   list]
-|| 	1. Betsy Choo  Phone Number: 222222  Email: benchoo@nus.edu.sg
-|| 	2. Aaron  Phone Number: 1234  Email: 1234@gmail.com
-|| 
-|| 2 persons found!
+|| Enter command: || [Command entered:  total]
+|| There is/are 4 person(s) in the address book
 || ===================================================
 || Enter command: || [Command entered:  clear]
 || Address book has been cleared!
